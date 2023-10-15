@@ -65,9 +65,9 @@ static const int lockfullscreen =
 #include "vanitygaps.c"
 static const Layout layouts[] = {
     /* symbol     arrange function */
-    {"[]=", tile}, /* first entry is default */
+    {"[]=", spiral}, /* first entry is default */
     {"[M]", monocle},
-    {"[@]", spiral},
+    {"[@]", tile},
     {"[\\]", dwindle},
     {"H[]", deck},
     {"TTT", bstack},
@@ -103,7 +103,6 @@ static const char *dmenucmd[] = {
     "dmenu_run", "-m",      dmenumon, "-fn",    dmenufont, "-nb",     col_gray1,
     "-nf",       col_gray3, "-sb",    col_cyan, "-sf",     col_gray4, NULL};
 static const char *termcmd[] = {TERMINAL, NULL};
-static const char *shutcmd[] = {"systemctl", "poweroff", NULL};
 
 static const Key keys[] = {
     /* modifier                     key           function        argument */
@@ -121,10 +120,10 @@ static const Key keys[] = {
     {MODKEY | ShiftMask, XK_a, defaultgaps, {0}},
     {MODKEY, XK_Tab, view, {0}},
     {MODKEY, XK_q, killclient, {0}},
-    {MODKEY, XK_t, setlayout, {.v = &layouts[0]}},             // tile
-    {MODKEY, XK_f, setlayout, {.v = &layouts[1]}},             // monocle
-    {MODKEY, XK_m, setlayout, {.v = &layouts[2]}},             // spiral
-    {MODKEY, XK_r, setlayout, {.v = &layouts[3]}},             // dwindle
+    {MODKEY, XK_t, setlayout, {.v = &layouts[2]}}, // tile
+    {MODKEY, XK_f, setlayout, {.v = &layouts[1]}}, // monocle
+    {MODKEY, XK_m, setlayout, {.v = &layouts[0]}}, // spiral
+    {MODKEY, XK_r, spawn, {.v = (const char *[]){TERMINAL, "lf", NULL}}},
     {MODKEY | ShiftMask, XK_r, setlayout, {.v = &layouts[4]}}, // deck
     {MODKEY, XK_space, setlayout, {0}},
     {MODKEY | ShiftMask, XK_space, togglefloating, {0}},
@@ -137,7 +136,6 @@ static const Key keys[] = {
     TAGKEYS(XK_1, 0) TAGKEYS(XK_2, 1) TAGKEYS(XK_3, 2) TAGKEYS(XK_4, 3)
         TAGKEYS(XK_5, 4) TAGKEYS(XK_6, 5) TAGKEYS(XK_7, 6) TAGKEYS(XK_8, 7)
             TAGKEYS(XK_9, 8){MODKEY | ShiftMask, XK_q, quit, {0}},
-    {MODKEY | ShiftMask, XK_s, spawn, {.v = shutcmd}},
     {MODKEY, XK_w, spawn, {.v = (const char *[]){BROWSER, NULL}}},
     {MODKEY, XK_BackSpace, spawn, {.v = (const char *[]){"sysact", NULL}}},
 };
