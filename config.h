@@ -123,7 +123,10 @@ static const Key keys[] = {
     {MODKEY, XK_t, setlayout, {.v = &layouts[2]}}, // tile
     {MODKEY, XK_f, setlayout, {.v = &layouts[1]}}, // monocle
     {MODKEY, XK_m, setlayout, {.v = &layouts[0]}}, // spiral
-    {MODKEY, XK_r, spawn, {.v = (const char *[]){TERMINAL, "lf", NULL}}},
+    {MODKEY,
+     XK_r,
+     spawn,
+     {.v = (const char *[]){TERMINAL, "-e", "lfub", NULL}}},
     {MODKEY | ShiftMask,
      XK_r,
      spawn,
