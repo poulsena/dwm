@@ -130,6 +130,7 @@ static const Key keys[] = {
             TAGKEYS(XK_9, 8){MODKEY | ShiftMask, XK_q, quit, {0}},
     {MODKEY, XK_w, spawn, {.v = (const char *[]){BROWSER, NULL}}},
     {MODKEY, XK_BackSpace, spawn, {.v = (const char *[]){"sysact", NULL}}},
+    {MODKEY, XK_f, togglefullscr, {0}},
 };
 
 /* button definitions */
